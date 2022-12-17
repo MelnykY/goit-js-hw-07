@@ -1,9 +1,23 @@
 import { galleryItems } from "./gallery-items.js";
 
 const gallery = document.querySelector(".gallery");
-const imageEl = galleryItems
-  .map(({ preview, original, description }) => {
-    return `<div class="gallery__item">
+// const imageEl = galleryItems
+//   .map(({ preview, original, description }) => {
+//     return `<div class="gallery__item">
+//     <a class="gallery__link" href='${original}'>
+//     <img class="gallery__image"
+//     src ='${preview}' 
+//     alt ='${description}' 
+//     data-source='${original}'
+//     />
+//   </a>
+// </div>`;
+//   })
+//   .join("");
+
+  const imageEl = galleryItems
+    .map(
+      ({ preview, original, description }) => `<div class="gallery__item">
     <a class="gallery__link" href='${original}'>
     <img class="gallery__image"
     src ='${preview}' 
@@ -11,12 +25,11 @@ const imageEl = galleryItems
     data-source='${original}'
     />
   </a>
-</div>`;
-  })
-  .join("");
+</div>`
+    )
+    .join("");
 
 gallery.insertAdjacentHTML('beforeend', imageEl);
-
 gallery.addEventListener("click", onImageClick);
 
 function onImageClick(event) {
